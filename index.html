@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Counter-Strike Tools: open tooling for CS2 offsets, generated metadata, and SDK integrations.">
+    <title>Counter-Strike Tools</title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="/" aria-label="Counter-Strike Tools home">
+        <span class="brand-mark">CS</span>
+        <span>Counter-Strike Tools</span>
+      </a>
+      <nav aria-label="Primary navigation">
+        <a href="#projects">Projects</a>
+        <a href="#formats">Formats</a>
+        <a href="https://github.com/counter-strike-tools">GitHub</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="hero-copy">
+          <p class="eyebrow">CS2 metadata tooling</p>
+          <h1>Generated offsets and SDKs for Counter-Strike 2 tools.</h1>
+          <p class="lede">
+            Counter-Strike Tools maintains focused, open repositories for dumping CS2 metadata and consuming it from
+            native and managed integrations.
+          </p>
+          <div class="actions" aria-label="Primary links">
+            <a class="button primary" href="https://github.com/counter-strike-tools/cs2-dumper">View dumper</a>
+            <a class="button secondary" href="https://github.com/counter-strike-tools/cs2-dumper-sdk">View SDKs</a>
+          </div>
+        </div>
+        <div class="terminal-panel" aria-label="Example output layout">
+          <div class="terminal-bar">
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+          <pre><code>output/
+  json/
+    buttons.json
+    interfaces.json
+    offsets.json
+    schemas/client_dll.json
+  metadata/info.json</code></pre>
+        </div>
+      </section>
+
+      <section id="projects" class="section">
+        <div class="section-heading">
+          <p class="eyebrow">Repositories</p>
+          <h2>Small tools with stable boundaries.</h2>
+        </div>
+        <div class="project-grid">
+          <article class="project-card">
+            <h3>cs2-dumper</h3>
+            <p>External offset, interface, button, and schema dumper for Counter-Strike 2 on Windows and Linux.</p>
+            <a href="https://github.com/counter-strike-tools/cs2-dumper">Open repository</a>
+          </article>
+          <article class="project-card">
+            <h3>cs2-dumper-sdk</h3>
+            <p>Rust, C, C++, and .NET SDKs for reading generated dumper output and running dump workflows.</p>
+            <a href="https://github.com/counter-strike-tools/cs2-dumper-sdk">Open repository</a>
+          </article>
+        </div>
+      </section>
+
+      <section id="formats" class="section split">
+        <div>
+          <p class="eyebrow">Output contract</p>
+          <h2>JSON-first data for downstream tools.</h2>
+        </div>
+        <p>
+          The dumper emits offsets, buttons, interfaces, schemas, and metadata in a predictable directory layout.
+          SDKs use the same contract so integrations can stay decoupled from dumper internals.
+        </p>
+      </section>
+    </main>
+
+    <footer>
+      <span>MIT licensed projects.</span>
+      <a href="https://github.com/counter-strike-tools">github.com/counter-strike-tools</a>
+    </footer>
+  </body>
+</html>
+
