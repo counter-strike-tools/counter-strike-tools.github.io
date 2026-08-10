@@ -3,242 +3,224 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Counter-Strike Tools builds open CS2 dumping and SDK tooling for generated offsets, schemas, interfaces, and metadata.">
+    <meta name="description" content="Counter-Strike Tools builds open Counter-Strike 2 metadata dumping and SDK tooling.">
     <title>Counter-Strike Tools</title>
     <link rel="stylesheet" href="styles.css">
   </head>
   <body>
-    <a class="notice" href="https://github.com/counter-strike-tools/cs2-dumper">
-      cs2-dumper is source-available and actively maintained. View the repository.
-    </a>
+    <div class="page-shell">
+      <header class="topbar">
+        <a class="brand" href="/" aria-label="Counter-Strike Tools home">
+          <span class="brand-mark">CST</span>
+          <span>Counter-Strike Tools</span>
+        </a>
+        <nav aria-label="Primary navigation">
+          <a href="#workflow">Workflow</a>
+          <a href="#projects">Projects</a>
+          <a href="#contract">Contract</a>
+          <a href="#faq">FAQ</a>
+        </nav>
+        <a class="github-link" href="https://github.com/counter-strike-tools">GitHub</a>
+      </header>
 
-    <header class="navbar">
-      <a class="logo" href="/" aria-label="Counter-Strike Tools home">
-        <span class="logo-mark">CS2</span>
-        <span>Counter-Strike Tools</span>
-      </a>
-      <nav aria-label="Main navigation">
-        <a href="#features">Features</a>
-        <a href="#projects">Projects</a>
-        <a href="#faq">FAQ</a>
-        <a href="https://github.com/counter-strike-tools">GitHub</a>
-      </nav>
-    </header>
-
-    <main>
-      <section class="hero">
-        <div class="hero-copy">
-          <p class="kicker">Offset dumping • SDK integrations • JSON contracts</p>
-          <h1>
-            Counter-Strike
-            <span>Tools</span>
-          </h1>
-          <p class="tagline">Open tooling for CS2 metadata workflows</p>
-          <p class="hero-text">
-            Dump offsets, interfaces, buttons, schemas, and metadata with a predictable output layout.
-            Consume the same contract from Rust, C, C++, and .NET without wiring your tool to dumper internals.
-          </p>
-          <div class="hero-actions">
-            <a class="button primary" href="https://github.com/counter-strike-tools/cs2-dumper">View Source Code</a>
-            <a class="button secondary" href="https://github.com/counter-strike-tools/cs2-dumper/releases">Download for Windows</a>
-            <a class="button ghost" href="https://github.com/counter-strike-tools/cs2-dumper-sdk">Get SDKs</a>
-          </div>
-        </div>
-
-        <div class="product-shot" aria-label="Counter-Strike Tools output preview">
-          <div class="window output-window">
-            <div class="window-top">
-              <span></span>
-              <span></span>
-              <span></span>
-              <strong>cs2-dumper</strong>
+      <main>
+        <section class="hero" aria-labelledby="hero-title">
+          <div class="hero-copy">
+            <p class="eyebrow">CS2 metadata tooling</p>
+            <h1 id="hero-title">Reliable CS2 metadata for real tools.</h1>
+            <p class="lede">
+              A focused dumper plus matching SDKs for developers building around generated Counter-Strike 2 metadata.
+              Produce stable JSON, keep generated files organized, and consume the same contract from the language you
+              already use.
+            </p>
+            <div class="hero-actions">
+              <a class="button primary" href="https://github.com/counter-strike-tools/cs2-dumper">View source</a>
+              <a class="button secondary" href="https://github.com/counter-strike-tools/cs2-dumper/releases">Download release</a>
+              <a class="button tertiary" href="https://github.com/counter-strike-tools/cs2-dumper-sdk">SDK docs</a>
             </div>
-            <div class="output-grid">
+            <div class="metric-row" aria-label="Project capabilities">
               <div>
-                <small>module</small>
-                <strong>client.dll</strong>
+                <strong>5</strong>
+                <span>output formats</span>
               </div>
               <div>
-                <small>offset</small>
-                <strong>dwEntityList</strong>
+                <strong>4</strong>
+                <span>SDK targets</span>
               </div>
               <div>
-                <small>layout</small>
-                <strong>json/schemas</strong>
+                <strong>1</strong>
+                <span>JSON contract</span>
               </div>
             </div>
-            <pre><code>output/
-  json/
-    offsets.json
-    interfaces.json
-    buttons.json
-    schemas/client_dll.json
-  metadata/info.json</code></pre>
           </div>
-          <div class="window sdk-window">
-            <div class="window-top">
-              <span></span>
-              <span></span>
-              <span></span>
-              <strong>SDK lookup</strong>
+
+          <div class="hero-visual" aria-label="Generated output preview">
+            <div class="console-card">
+              <div class="console-title">
+                <span>cs2-dumper</span>
+                <small>live output</small>
+              </div>
+              <pre><code>$ cs2-dumper --output-layout by-file-type
+
+client.dll
+  dwEntityList       resolved
+  dwViewMatrix       resolved
+  C_CSPlayerPawn     schema parsed
+
+output/json/offsets.json
+output/json/schemas/client_dll.json
+output/metadata/info.json</code></pre>
             </div>
-            <code>snapshot.offset("client.dll", "dwEntityList")</code>
+            <div class="lookup-card">
+              <span>SDK lookup</span>
+              <code>snapshot.offset("client.dll", "dwEntityList")</code>
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      <section id="features" class="feature-section">
-        <div class="section-title">
-          <p class="kicker">Powered by stable generated data</p>
-          <h2>Fast CS2 metadata pipelines without glue-code sprawl.</h2>
-        </div>
-        <div class="showcase">
-          <article>
-            <div class="icon">01</div>
-            <h3>External dumper</h3>
-            <p>Collect offsets, buttons, interfaces, and Source 2 schema fields from a running CS2 process.</p>
-          </article>
-          <article>
-            <div class="icon">02</div>
-            <h3>Clean output layout</h3>
-            <p>Generated files are grouped by type, with metadata separated so automation can find what it needs.</p>
-          </article>
-          <article>
-            <div class="icon">03</div>
-            <h3>Multi-language SDKs</h3>
-            <p>Consume the same dump data from Rust, C, C++, and .NET projects using purpose-built packages.</p>
-          </article>
-        </div>
-      </section>
-
-      <section class="ui-section">
-        <div class="section-title centered">
-          <p class="kicker">Dynamic, space-efficient interface</p>
-          <h2>Designed around the data developers actually inspect.</h2>
-          <p>
-            The website mirrors the repo workflow: compact panels, visible formats, direct actions, and no filler between
-            you and the tools.
-          </p>
-        </div>
-        <div class="screens">
-          <div class="mini-screen">
-            <span>offsets.json</span>
-            <strong>dwViewMatrix</strong>
-            <p>0x1D21A00</p>
+        <section id="workflow" class="band">
+          <div class="section-head">
+            <p class="eyebrow">Workflow</p>
+            <h2>A small pipeline with clear ownership.</h2>
           </div>
-          <div class="mini-screen raised">
-            <span>schemas/client_dll</span>
-            <strong>C_CSPlayerPawn</strong>
-            <p>m_iHealth • m_vecOrigin • m_hController</p>
+          <div class="workflow-grid">
+            <article>
+              <span class="step">01</span>
+              <h3>Dump</h3>
+              <p>Run the external dumper against a local CS2 process and generate offsets, interfaces, buttons, schemas, and metadata.</p>
+            </article>
+            <article>
+              <span class="step">02</span>
+              <h3>Store</h3>
+              <p>Keep output grouped by file type so automated consumers can target the data they need without parsing generated source.</p>
+            </article>
+            <article>
+              <span class="step">03</span>
+              <h3>Consume</h3>
+              <p>Load the JSON contract from Rust, C, C++, or .NET, or run the dumper directly and consume stdout JSON.</p>
+            </article>
           </div>
-          <div class="mini-screen">
-            <span>SDKs</span>
-            <strong>Rust / C / C++ / .NET</strong>
-            <p>One contract, multiple consumers.</p>
+        </section>
+
+        <section id="projects" class="projects">
+          <div class="section-head compact">
+            <p class="eyebrow">Repositories</p>
+            <h2>Use the repo that matches the job.</h2>
           </div>
-        </div>
-      </section>
+          <div class="project-list">
+            <article class="project-card featured">
+              <div>
+                <p class="label">Generator</p>
+                <h3>cs2-dumper</h3>
+                <p>External Counter-Strike 2 offset, interface, button, and schema dumper with memflow connector support.</p>
+              </div>
+              <ul>
+                <li>Windows and Linux workflows</li>
+                <li>JSON, C#, C++, Rust, and Zig outputs</li>
+                <li>Grouped output layout plus flat compatibility mode</li>
+              </ul>
+              <a href="https://github.com/counter-strike-tools/cs2-dumper">Open repository</a>
+            </article>
+            <article class="project-card">
+              <div>
+                <p class="label">Integration</p>
+                <h3>cs2-dumper-sdk</h3>
+                <p>SDKs for reading dumper output and embedding lookup behavior in tooling without duplicating parsers.</p>
+              </div>
+              <ul>
+                <li>Rust crate</li>
+                <li>Header-only C and C++ packages</li>
+                <li>.NET project and examples</li>
+              </ul>
+              <a href="https://github.com/counter-strike-tools/cs2-dumper-sdk">Open repository</a>
+            </article>
+          </div>
+        </section>
 
-      <section id="projects" class="compare-section">
-        <div class="section-title centered">
-          <p class="kicker">Choose the repository you need</p>
-          <h2>Two focused projects, one output contract.</h2>
-        </div>
-        <div class="repo-cards">
-          <article class="repo-card">
-            <h3>cs2-dumper</h3>
-            <p>Best choice for generating fresh Counter-Strike 2 metadata.</p>
-            <ul>
-              <li>Windows and Linux support</li>
-              <li>Memflow connector options</li>
-              <li>Offsets, interfaces, buttons, schemas</li>
-              <li>JSON, C#, C++, Rust, and Zig outputs</li>
-            </ul>
-            <a class="button primary" href="https://github.com/counter-strike-tools/cs2-dumper">Open dumper</a>
-          </article>
-          <article class="repo-card highlighted">
-            <span class="badge">Integration layer</span>
-            <h3>cs2-dumper-sdk</h3>
-            <p>Best choice for building tools on top of generated dumper output.</p>
-            <ul>
-              <li>Rust crate</li>
-              <li>Header-only C and C++ SDKs</li>
-              <li>.NET package project</li>
-              <li>Run dumper and parse stdout JSON</li>
-            </ul>
-            <a class="button primary" href="https://github.com/counter-strike-tools/cs2-dumper-sdk">Open SDKs</a>
-          </article>
-          <article class="repo-card">
-            <h3>Website</h3>
-            <p>Best choice for quickly finding the organization projects.</p>
-            <ul>
-              <li>Static GitHub Pages site</li>
-              <li>Project index</li>
-              <li>Release and source links</li>
-              <li>Organization profile alignment</li>
-            </ul>
-            <a class="button primary" href="https://github.com/counter-strike-tools/counter-strike-tools.github.io">Open site repo</a>
-          </article>
-        </div>
-      </section>
+        <section id="contract" class="contract">
+          <div class="contract-copy">
+            <p class="eyebrow">Output contract</p>
+            <h2>Readable files, predictable paths, low ceremony.</h2>
+            <p>
+              Downstream tools should depend on the JSON output layout rather than internal dumper code. That keeps
+              integrations smaller, easier to audit, and less brittle when the dumper implementation changes.
+            </p>
+          </div>
+          <div class="file-map">
+            <div><span>offsets</span><code>output/json/offsets.json</code></div>
+            <div><span>interfaces</span><code>output/json/interfaces.json</code></div>
+            <div><span>buttons</span><code>output/json/buttons.json</code></div>
+            <div><span>schemas</span><code>output/json/schemas/client_dll.json</code></div>
+            <div><span>metadata</span><code>output/metadata/info.json</code></div>
+          </div>
+        </section>
 
-      <section class="feedback-section">
-        <div class="section-title centered">
-          <p class="kicker">Built for repeatable tooling</p>
-          <h2>Keep your consumers stable while CS2 changes.</h2>
-        </div>
-        <div class="quote-grid">
-          <figure>
-            <blockquote>Generated metadata belongs in a predictable contract, not scattered through one-off scripts.</blockquote>
-            <figcaption>Output layout</figcaption>
-          </figure>
-          <figure>
-            <blockquote>SDKs should read dumps, run dumps, and stay small enough to audit when the game updates.</blockquote>
-            <figcaption>Integration model</figcaption>
-          </figure>
-          <figure>
-            <blockquote>Tooling repositories work best when each one owns a narrow surface and documents it clearly.</blockquote>
-            <figcaption>Repository scope</figcaption>
-          </figure>
-        </div>
-      </section>
+        <section class="quality">
+          <div class="quality-panel">
+            <p class="eyebrow">Why this exists</p>
+            <h2>Tooling should feel boring in the right places.</h2>
+            <p>
+              The repos are intentionally narrow: one project generates the data, another makes it easy to consume.
+              Clear boundaries make updates easier to review and integrations easier to keep working.
+            </p>
+          </div>
+          <div class="quality-grid">
+            <div>
+              <strong>Stable paths</strong>
+              <span>Automations can find data without guessing.</span>
+            </div>
+            <div>
+              <strong>Language coverage</strong>
+              <span>Use generated metadata from native or managed tooling.</span>
+            </div>
+            <div>
+              <strong>Release first</strong>
+              <span>Download builds or compile the Rust workspace yourself.</span>
+            </div>
+            <div>
+              <strong>Audit friendly</strong>
+              <span>Small surfaces and plain output contracts.</span>
+            </div>
+          </div>
+        </section>
 
-      <section id="faq" class="faq-section">
-        <div class="section-title centered">
-          <p class="kicker">Frequently asked questions</p>
-          <h2>Start here before wiring your project.</h2>
-        </div>
-        <div class="faq-list">
-          <details>
-            <summary>Which repo should I use first?</summary>
-            <p>Use `cs2-dumper` to generate output. Use `cs2-dumper-sdk` when an application needs to consume that output.</p>
-          </details>
-          <details>
-            <summary>What output format should downstream tools target?</summary>
-            <p>Target the JSON layout under `output/json` and `output/metadata`. Flat-layout compatibility is supported for older consumers.</p>
-          </details>
-          <details>
-            <summary>Does the SDK require generated files?</summary>
-            <p>No. The SDK can load an output directory or run the dumper and consume stdout JSON directly.</p>
-          </details>
-          <details>
-            <summary>Where are releases published?</summary>
-            <p>Release artifacts are published from the `cs2-dumper` repository on GitHub.</p>
-          </details>
-        </div>
-      </section>
-    </main>
+        <section id="faq" class="faq">
+          <div class="section-head centered">
+            <p class="eyebrow">FAQ</p>
+            <h2>Common starting points.</h2>
+          </div>
+          <div class="faq-list">
+            <details>
+              <summary>Which repository do I start with?</summary>
+              <p>Start with cs2-dumper if you need fresh generated data. Use cs2-dumper-sdk when your own application needs to consume that data.</p>
+            </details>
+            <details>
+              <summary>What should integrations parse?</summary>
+              <p>Prefer the JSON output under output/json and output/metadata. Generated source files are useful, but JSON is the cleanest contract.</p>
+            </details>
+            <details>
+              <summary>Can the SDK run the dumper?</summary>
+              <p>Yes. SDK consumers can load an output directory or run the dumper and parse stdout JSON without requiring generated files.</p>
+            </details>
+            <details>
+              <summary>Where are binaries published?</summary>
+              <p>Downloadable releases live in the cs2-dumper repository releases page.</p>
+            </details>
+          </div>
+        </section>
+      </main>
 
-    <footer class="footer">
-      <div>
-        <strong>Counter-Strike Tools</strong>
-        <p>Open CS2 metadata tooling for developers.</p>
-      </div>
-      <div class="footer-links">
-        <a href="https://github.com/counter-strike-tools/cs2-dumper">Dumper</a>
-        <a href="https://github.com/counter-strike-tools/cs2-dumper-sdk">SDKs</a>
-        <a href="https://github.com/counter-strike-tools">GitHub</a>
-      </div>
-    </footer>
+      <footer class="footer">
+        <div>
+          <strong>Counter-Strike Tools</strong>
+          <span>Open CS2 metadata tooling.</span>
+        </div>
+        <div class="footer-links">
+          <a href="https://github.com/counter-strike-tools/cs2-dumper">Dumper</a>
+          <a href="https://github.com/counter-strike-tools/cs2-dumper-sdk">SDK</a>
+          <a href="https://github.com/counter-strike-tools/counter-strike-tools.github.io">Website repo</a>
+        </div>
+      </footer>
+    </div>
   </body>
 </html>
